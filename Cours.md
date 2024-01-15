@@ -268,3 +268,141 @@ Pour les push suivants il suffira d'écrire la commande suivante :
 ```sh
 git push
 ```
+
+Pour cloner un depot :
+
+```sh
+git clone https://github.com/bendahmanem/ISITECH-2324-B2-DEV-Versioning
+```
+
+##### Ignorer des fichiers
+
+Pour ignorer des fichiers il suffit de creer un fichier .gitignore et d'y ajouter les fichiers et les dossiers a ignorer.
+
+Le fichier .gitignore agit de façon récursive sur les sous-dossiers.
+
+##### Consulter l'etat des fichiers
+
+```sh
+git status
+```
+
+```sh
+git diff
+```
+
+Git status presente l'etat global du depot, modifié ou non, et git diff presente les modifications apportées aux fichiers.
+
+On peut utiliser git diff de facon plus precise:
+
+```
+git diff --staged
+```
+
+##### Valider des modifications
+
+```sh
+git commit -m "message"
+```
+
+##### Effacer des fichiers
+
+Pour eliminer un fichier il faut utiliser les commandes suivantes :
+
+```sh
+rm  <fichier>
+
+git status
+
+git rm <fichier>
+```
+
+Cette derniere commande va indexer le fichier pour qu'il soit supprimé lors du prochain commit.
+
+Il existe une autre forme de suppression de fichier qui consiste a utiliser la commande suivante :
+
+```sh
+git rm --cached <fichier>
+```
+
+Cette commande va supprimer le fichier de l'index mais pas du disque dur.
+
+##### Visualiser l'historique des commits
+
+```sh
+git log
+```
+
+La commande log est très puissante et possède de nombreuses options. En voici quelques-unes :
+
+```
+git log -p -2
+```
+
+Cette commande affiche les deux derniers commits avec les différences introduites.
+
+```
+git log --stat
+```
+
+Cette commande affiche des statistiques sur les fichiers modifiés à chaque commit.
+
+```
+git log --pretty=oneline
+```
+
+Cette commande affiche chaque commit sur une seule ligne.
+
+```
+git log --pretty=format:"%h %s" --graph
+```
+
+Cette commande affiche l’historique sous forme d’un graphe.
+
+##### Annuler des modifications
+
+```sh
+
+git commit --amend
+```
+
+Cette commande permet de modifier le dernier commit.
+
+```sh
+git reset HEAD <fichier>
+```
+
+Cette commande permet de retirer un fichier de l'index.
+
+##### Desindexer des elements deja commits
+
+TODO: A completer
+
+##### La creation de tags (ou etiquettes)
+
+En plus d'identier les commits par des identifiants uniques, Git vous permet aussi d'etiqueter un certain etat de l'historique (commit) comme etant important. Cela peut etre utile pour marquer des versions de votre code source.
+
+```sh
+git tag -a v1.0 -m "Version 1.0"
+```
+
+On peut lister les tags avec la commande suivante :
+
+```sh
+git tag
+```
+
+On peut aussi filtrer les tags avec la commande suivante :
+
+```sh
+git tag -l "v1.8.5*"
+```
+
+Pour visualier une etiquette, on utilise la commande suivante :
+
+```sh
+
+git show v1.4
+```
+
+![Alt text](image-4.png)
