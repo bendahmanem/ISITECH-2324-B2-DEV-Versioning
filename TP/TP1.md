@@ -32,11 +32,3 @@ Créer des travaux pratiques (TPs) basés sur l'utilisation de Git avec des dép
 
 - **Tâche 1 :** Examiner les pull requests ouvertes et fermées pour comprendre comment la revue de code est gérée.
 - **Tâche 2 :** Créer une pull request fictive sur une branche de votre propre fork du dépôt et pratiquer une revue de code.
-
-### TP 5: Atelier Pratique de Projet
-
-**Objectif :** Utiliser Git dans un contexte de projet réel.
-**Dépôt utilisé :** Choix libre parmi les dépôts mentionnés.
-
-- **Tâche 1 :** Chaque étudiant ou groupe d'étudiants fork un dépôt, crée des branches pour différentes fonctionnalités, et gère les merges.
-- **Tâche 2 :** Appliquer les bonnes pratiques de codage et de commit apprises précédemment.
