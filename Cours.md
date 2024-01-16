@@ -406,3 +406,137 @@ git show v1.4
 ```
 
 ![Alt text](image-4.png)
+
+#### Les branches
+
+Lorsque vous faites un commit, Git enregistre un objet de commit qui contient un pointeur vers l’arbre de contenu qui représente l’état de votre projet à ce moment-là. Ce pointeur de commit contient le nom SHA-1 du commit parent ou des commits parents qui ont précédé ce commit (il peut y avoir plus d’un parent dans le cas d’un commit de fusion). Par conséquent, à partir d’un commit, Git peut remonter toute l’histoire de votre projet.
+
+Pour creer une branche il suffit d'utiliser la commande suivante :
+
+```sh
+git branch <nom-de-branche>
+```
+
+![Alt text](image-5.png)
+
+![Alt text](image-6.png)
+
+Git branche cree une nouvelle branche mais ne vous fait pas basculer vers cette derniere.
+
+Pour basculer vers une branche il suffit d'utiliser la commande suivante :
+
+```sh
+git checkout <nom-de-branche>
+```
+
+![Alt text](image-7.png)
+
+Pour creer une branche et basculer vers cette derniere il suffit d'utiliser la commande suivante :
+
+```sh
+git checkout -b <nom-de-branche>
+```
+
+##### Fusionner des branches
+
+![Alt text](image-8.png)
+
+On va commencer a travailler sur l'issue 53:
+
+```sh
+git checkout -b iss53
+```
+
+![Alt text](image-9.png)
+
+On va commencer a travailler sur l'issue 53 et effectuer un premier commit:
+
+```sh
+git commit -m "commit 3"
+```
+
+![Alt text](image-10.png)
+
+On va ensuite rebasculer sur la branche master afin d'effectuer un hotfix:
+
+```sh
+git checkout master
+```
+
+![Alt text](image-11.png)
+
+```sh
+git branch hotfix
+git commit -m "commit 4"
+```
+
+Nous sommes satisfait du hotfix et nous allons le valider:
+
+```sh
+git checkout master
+git merge hotfix
+```
+
+On note la strategie de merge utilisee par Git: Fast-forward
+
+![Alt text](image-12.png)
+
+La branche hotfix n'a plus lieu d'etre et nous allons la supprimer:
+
+```sh
+git branch -d hotfix
+```
+
+On va maintenant retourner sur iss53 et continuer a travailler dessus:
+
+```sh
+git checkout iss53
+```
+
+On effectue un nouveau commit afin de valider notre travail:
+
+```sh
+git commit -m "commit 5"
+```
+
+![Alt text](image-13.png)
+
+On va maintenant retourner sur master et effectuer un merge avec iss53:
+
+```sh
+git checkout master
+
+git merge iss53
+```
+
+La strategie de merge est alors differente de celle utilisee precedemment: Merge commit
+
+![Alt text](image-14.png)
+
+Au lieu d'avancer la branche master, Git cree un nouveau commit qui contient les differences entre les deux branches.
+
+![Alt text](image-15.png)
+
+On peut supprimer la branche iss53:
+
+```sh
+git branch -d iss53
+```
+
+##### Resoudre des conflits
+
+Un conflit a lieu lorsque deux branches differentes ont modifiees la meme partie du meme fichier, ou si un fichier a ete supprime dans une branche alors qu'il a ete modifie dans une autre.
+
+![Alt text](image-16.png)
+
+Physiquement, un conflit est represente par des caracteres speciaux qui apparaissent dans le fichier.
+
+![Alt text](image-17.png)
+
+Apres resolution du conflit il suffit de commit.
+
+Vous avez un outil qui permet de resoudre les conflits avec git :
+
+```sh
+git mergetool
+```
