@@ -540,3 +540,110 @@ Vous avez un outil qui permet de resoudre les conflits avec git :
 ```sh
 git mergetool
 ```
+
+Pour afficher toutes les bramches :
+
+```sh
+
+git branch -a
+git branch --all
+```
+
+Parlons un peu de la commande `git fetch <distant>` : elle permet de synchroniser vos travaux, elle va rechercher le serveur qui heberge `<distant>` et va recuperer les modifications qui ont ete effectuees sur le serveur distant.
+
+#### Pousser des modifications
+
+```sh
+git push <distant> <branche>
+
+git push origin master
+
+git push -u origin master
+
+```
+
+Pour recuperer les modifications effectuees sur le serveur distant a propos de nouvelles branches ou de branches existantes :
+
+```sh
+git fetch <distant>
+```
+
+Pour recuperer des modifications et les fusionner avec vos branches locales :
+
+```sh
+git pull <distant> <branche>
+```
+
+La regle d'or lorsqu'on debute avec Git:
+
+`commit` -> `pull` -> `push`
+
+Lorsque vous recuperez des branches distantes avec la commande fetch, vous ne creez pas automatiquement une branche locale qui suit la branche distante. Vous devez creer une branche locale et la lier a la branche distante.
+
+```sh
+git checkout -b <nom-de-branche> <distant>/<nom-de-branche>
+
+Branch <nom-de-branche> set up to track remote branch
+<nom-de-branche> from <distant>.
+```
+
+On a un raccourci pour cette commande :
+
+```sh
+git checkout --track <distant>/<nom-de-branche>
+```
+
+Il y a meme encore plus court, si la branche locale n'existe pas encore :
+
+```sh
+git checkout <nom-de-branche>
+```
+
+Afin de visualiser tout ça on peut utiliser la commande suivante :
+
+```sh
+git fetch --all
+
+git branch -vv
+```
+
+Analysons un peu la commande suivante :
+
+```
+git push origin --delete une-branche
+```
+
+#### Rebaser votre travail
+
+Avec Git il y deux manieres d'integrer les modifications d'une branche dans une autre :
+
+- La fusion (merge)
+- Le rebasage (rebase)
+
+![Alt text](image-18.png)
+
+Apres un merge on obtient cela:
+
+```
+git checkout master
+
+git merge experiment
+```
+
+![Alt text](image-19.png)
+
+Avec le rebase on aurait entré les commandes suivantes :
+
+```sh
+git checkout experiment
+
+git rebase master
+```
+
+Et voici ce qui se passe :
+
+![Alt text](image-20.png)
+
+Et voici le resultat final:
+
+![Alt text](image-22.png)
