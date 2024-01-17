@@ -647,3 +647,45 @@ Et voici ce qui se passe :
 Et voici le resultat final:
 
 ![Alt text](image-22.png)
+
+#### Rebaser votre travail (avancé)
+
+![Alt text](image-23.png)
+
+La commande qui correspond au rebase cité en cours :
+
+```sh
+git rebase --onto master server client
+```
+
+Essaye d'extraire la branche client de la branche server et de la rebaser sur la branche master.
+
+![Alt text](image-24.png)
+
+```sh
+git checkout master
+git merge client
+```
+
+![Alt text](image-25.png)
+
+On peut aussi rebaser la branche server sur la branche master :
+
+```sh
+git rebase master server
+```
+
+![Alt text](image-26.png)
+
+Vous pouvez ensuite merge server dans master:
+
+```sh
+git checkout master
+git merge server
+```
+
+![Alt text](image-27.png)
+
+#### Rebase or not Rebase ?
+
+La seule regle a respecter avec la commande Rebase: ne jamais rebase des modifications qui ont ete publiees sur un serveur distant (push).
